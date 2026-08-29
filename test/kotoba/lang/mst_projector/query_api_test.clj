@@ -29,7 +29,7 @@
   `babashka.http-client`) and the error signal (plain `ex-info` vs. this
   repo's own `etzhayyim-sdk.errors`). Read the two side by side to confirm:
   compare this namespace's `call*` to `mst_projector.cljc`'s `call*`."
-  (:require [clojure.data.json :as json]
+  (:require [json.data-json :as json]
             [clojure.test :refer [deftest is testing]]
             [kotoba.lang.mst-projector.indexer :as indexer]
             [kotoba.lang.mst-projector.mem-index :as mem-index]

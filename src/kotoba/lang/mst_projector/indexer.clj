@@ -34,7 +34,7 @@
   translation entirely -- collections are keyed by the exact NSID string
   throughout, so `list-collections` here is *exactly* correct (an
   improvement over the original's lossy diagnostic-only reverse mapping)."
-  (:require [clojure.data.json :as json])
+  (:require [json.data-json :as json])
   (:import (java.time Instant)))
 
 ;; ---------------------------------------------------------------------------
