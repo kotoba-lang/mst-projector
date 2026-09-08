@@ -26,7 +26,7 @@
       (is (= "rkey1" (get row "rkey")))
       (is (= "cid1" (get row "record_cid")))
       (is (string? (get row "indexed_at")))
-      (is (= "{\"text\":\"hi\",\"nested\":{\"k\":\"v\"}}" (get row "record_json")))
+      (is (= "{\"nested\":{\"k\":\"v\"},\"text\":\"hi\"}" (get row "record_json")))
       (is (= "hi" (get row "text")))
       (is (= "{\"k\":\"v\"}" (get row "nested")))))
   (testing "a flattened field with the same name as a base column wins (quirk preserved from python's {**base, **flat} spread order)"
