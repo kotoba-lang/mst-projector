@@ -33,7 +33,7 @@
   body -- so every error path here returns a REAL 4xx/5xx status, never a
   200 with an error payload."
   (:require [json.data-json :as json]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [kotoba.lang.mst-projector.indexer :as indexer])
   (:import (com.sun.net.httpserver HttpExchange HttpHandler HttpServer)
            (java.net InetSocketAddress)

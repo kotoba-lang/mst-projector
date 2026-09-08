@@ -30,7 +30,7 @@
   nil per `flatten-record`'s contract), so no custom EDN reader is needed
   and `read-string` is always safe here (no `#`-tagged literals ever
   written)."
-  (:require [clojure.edn :as edn]
+  (:require [kotoba.lang.edn :as edn]
             [kotoba.lang.mst-projector.indexer :as indexer])
   (:import (java.io File)))
 
@@ -48,7 +48,11 @@
 (defn- load-edn
   [persist-path]
   (when (and persist-path (.exists (File. ^String persist-path)))
-    (edn/read-string (slurp persist-path))))
+    ;; `{:eof nil}`: a persist file that exists but is empty is a normal state
+    ;; (created, not yet written). clojure.edn/read-string answered nil for it;
+    ;; kotoba.lang.edn refuses empty input unless :eof says what to answer, so
+    ;; the intent that used to be implicit is now written down.
+    (edn/read-string {:eof nil} (slurp persist-path))))
 
 (defn- persist!
   [new-state persist-path]
