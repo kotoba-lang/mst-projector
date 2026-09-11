@@ -19,7 +19,7 @@
   the flag.
 
   Usage:
-    clojure -M:run [--host H] [--port N] [--data-dir PATH] [--verbose]
+    kbb -M:run [--host H] [--port N] [--data-dir PATH] [--verbose]
 
   Flags (env var fallback in parens, matching python's argparse defaults):
     --host H       bind host (ETZHAYYIM_MST_PROJECTOR_HOST, default 127.0.0.1)

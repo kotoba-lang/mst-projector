@@ -111,7 +111,7 @@ client classifies by status code first.
 tests — `query-api/port` reads back the actual bound port). `(query-api/stop!
 server)` stops it.
 
-`kotoba.lang.mst-projector.cli` is the entrypoint (`clojure -M:run`), ported
+`kotoba.lang.mst-projector.cli` is the entrypoint (`kbb -M:run`), ported
 from `main.py`'s **`--serve` path only**: it builds a `mem-index` (from
 `--data-dir`/`ETZHAYYIM_MST_PROJECTOR_DATA_DIR` if given, else pure
 in-memory) and starts `query-api` on `--host`/`--port` (env
@@ -163,9 +163,9 @@ library-placement rule. Design authority remains ADR-2605215500, in
 
 ```bash
 clj-kondo --lint src test
-clojure -M:test
-clojure -M:run --host 127.0.0.1 --port 8765           # start the query server
-clojure -M:run --data-dir ~/.mst-projector/index.edn   # ...with EDN persistence
+kbb -M:test
+kbb -M:run --host 127.0.0.1 --port 8765           # start the query server
+kbb -M:run --data-dir ~/.mst-projector/index.edn   # ...with EDN persistence
 ```
 
 ## License

@@ -13,6 +13,6 @@
  {:canonical #{:edn}
   :external-wire-only #{:json :jsonl :json-ld}}
  :verification
- {:command "clojure -M:test"
+ {:command "kbb -M:test"
   :status :pass
   :date "2026-07-18"}}

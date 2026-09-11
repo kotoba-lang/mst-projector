@@ -17,9 +17,9 @@
 
   This is NOT that file `require`d directly: `mst_projector.cljc` lives in
   a private monorepo (`etzhayyim/root`, not a standalone deps.edn-having
-  package -- it is a babashka/bb.edn project, not a `clojure -M` one), so
+  package -- it is a babashka/bb.edn project, not a `kbb -M` one), so
   adding it as a git dependency from this PUBLIC kotoba-lang repo would be
-  both impractical (bb project layout, no independent SHA-pinnable
+  both impractical (kbb -M:project layout, no independent SHA-pinnable
   artifact) and undesirable (a public repo should not depend on a private
   one). `reference-client` is instead a deliberate, side-by-side-readable
   reimplementation of that file's `call*`/`query-by-collection`/
