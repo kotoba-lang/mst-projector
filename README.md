@@ -137,7 +137,7 @@ standalone `deps.edn` package with an independently SHA-pinnable git
 coordinate) — so requiring it directly as a test dependency from this
 public repo was impractical and undesirable (a public `kotoba-lang` repo
 depending on a private one). Instead,
-`test/kotoba/lang/mst_projector/query_api_test.clj` includes a
+`test/kotoba/lang/mst_projector/query_api_test.cljk` includes a
 `reference-client`: a small, deliberately side-by-side-readable
 reimplementation of that file's `call*` and its 4 public functions —
 identical NSIDs, identical request-map shapes/keys, identical status-code
