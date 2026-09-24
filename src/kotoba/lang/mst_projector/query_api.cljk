@@ -32,12 +32,11 @@
   (attempting to parse the JSON body either way), else parses the 2xx JSON
   body -- so every error path here returns a REAL 4xx/5xx status, never a
   200 with an error payload."
-  (:require [json.data-json :as json]
+  (:require [kotoba.bytes :as kbytes] [json.data-json :as json]
             [kotoba.lang.text :as str]
             [kotoba.lang.mst-projector.indexer :as indexer])
   (:import (com.sun.net.httpserver HttpExchange HttpHandler HttpServer)
-           (java.net InetSocketAddress)
-           (java.nio.charset StandardCharsets)))
+           (java.net InetSocketAddress)))
 
 ;; ---------------------------------------------------------------------------
 ;; Wire helpers
@@ -64,11 +63,11 @@
 
 (defn- read-request-body
   ^String [^HttpExchange ex]
-  (String. (.readAllBytes (.getRequestBody ex)) StandardCharsets/UTF_8))
+  (kbytes/utf8-string (.readAllBytes (.getRequestBody ex))))
 
 (defn- write-json!
   [^HttpExchange ex status body-map]
-  (let [^bytes body (.getBytes (json/write-str body-map) StandardCharsets/UTF_8)]
+  (let [^bytes body (kbytes/utf8-bytes (json/write-str body-map))]
     (.set (.getResponseHeaders ex) "Content-Type" "application/json; charset=utf-8")
     (.sendResponseHeaders ex status (alength body))
     (with-open [os (.getResponseBody ex)]
