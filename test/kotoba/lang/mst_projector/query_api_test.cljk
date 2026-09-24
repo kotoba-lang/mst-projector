@@ -30,7 +30,7 @@
   repo's own `etzhayyim-sdk.errors`). Read the two side by side to confirm:
   compare this namespace's `call*` to `mst_projector.cljc`'s `call*`."
   (:require [json.data-json :as json]
-            [clojure.test :refer [deftest is testing]]
+            [kotoba.test :refer [deftest is testing]]
             [kotoba.lang.mst-projector.indexer :as indexer]
             [kotoba.lang.mst-projector.mem-index :as mem-index]
             [kotoba.lang.mst-projector.query-api :as query-api])

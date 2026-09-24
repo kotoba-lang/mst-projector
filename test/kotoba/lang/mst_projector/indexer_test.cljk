@@ -2,7 +2,7 @@
   "Pure indexer-logic tests (record flattening, upsert semantics,
   delete-before-any-create no-op, count/list-collections) against the
   reference `mem-index` IIndex implementation."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [kotoba.lang.mst-projector.indexer :as indexer]
             [kotoba.lang.mst-projector.mem-index :as mem-index])
   (:import (java.io File)))
