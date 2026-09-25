@@ -29,7 +29,7 @@
   `babashka.http-client`) and the error signal (plain `ex-info` vs. this
   repo's own `etzhayyim-sdk.errors`). Read the two side by side to confirm:
   compare this namespace's `call*` to `mst_projector.cljc`'s `call*`."
-  (:require [json.data-json :as json]
+  (:require [kotoba.lang.error :as kerror] [json.data-json :as json]
             [kotoba.test :refer [deftest is testing]]
             [kotoba.lang.mst-projector.indexer :as indexer]
             [kotoba.lang.mst-projector.mem-index :as mem-index]
@@ -186,7 +186,7 @@
   (with-server
     (fn [_]
       (testing "missing collection -> 400 InvalidRequest (both via raw HTTP and the reference-client's exception classification)"
-        (is (thrown? clojure.lang.ExceptionInfo (query-by-collection nil)))
+        (is (thrown? kerror/ExceptionInfo (query-by-collection nil)))
         (let [{:keys [status body]} (post-json "com.etzhayyim.mstProjector.queryByCollection" {})]
           (is (= 400 status))
           (is (= "InvalidRequest" (:error (json/read-str body :key-fn keyword))))))
@@ -325,7 +325,7 @@
                   (-describe [_] "failing"))]
     (with-server failing
       (fn [_]
-        (let [ex (try (query-by-collection "any.collection") nil (catch clojure.lang.ExceptionInfo e e))]
+        (let [ex (try (query-by-collection "any.collection") nil (catch kerror/ExceptionInfo e e))]
           (is (some? ex))
           (is (= ::server-error (:type (ex-data ex))))
           (is (>= (:status (ex-data ex)) 500)))))))

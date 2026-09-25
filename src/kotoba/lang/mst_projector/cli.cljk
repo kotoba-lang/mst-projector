@@ -29,7 +29,7 @@
                    pure in-memory, does not survive restarts)
     --verbose      no-op placeholder (python's --verbose toggled log level;
                    this CLI has no logging framework wired up yet)"
-  (:require [kotoba.lang.mst-projector.mem-index :as mem-index]
+  (:require [kotoba.lang.error :as kerror] [kotoba.lang.mst-projector.mem-index :as mem-index]
             [kotoba.lang.mst-projector.query-api :as query-api]))
 
 (defn- env
@@ -77,7 +77,7 @@
   [args]
   (try
     (parse-args args)
-    (catch clojure.lang.ExceptionInfo e
+    (catch kerror/ExceptionInfo e
       (binding [*out* *err*]
         (println (str "[mst-projector] " (ex-message e))))
       (System/exit 2))))
